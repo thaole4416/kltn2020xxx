@@ -15,9 +15,7 @@ import { getAll } from "../../services/userService";
 import HistoryPopup from "../popup/history.popup";
 import OtpPopup from "../popup/otp.popup";
 
-const socket = socketIOClient(
-  `http://localhost:${process.env.PORT}`
-);
+const socket = socketIOClient();
 console.log("O day",process.env.PORT)
 class Menu extends Component {
   constructor(props) {
