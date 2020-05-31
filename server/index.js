@@ -16,6 +16,11 @@ app.use(express.json());
 
 require("./database");
 require("./helpers/MatchOrder");
+app.use(express.static(path.join(__dirname, "build")));
+
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
 
 app.use("/api", routes);
 
@@ -24,7 +29,7 @@ io.on("connection", function (socket) {
     emitter.emit("initData");
   });
   emitter.on("returnExchangeData", (stocksData) => {
-    socket.emit("getStocks",stocksData)
+    socket.emit("getStocks", stocksData);
   });
   socket.on("getExchangeData", function () {
     emitter.emit("getExchangeData");
