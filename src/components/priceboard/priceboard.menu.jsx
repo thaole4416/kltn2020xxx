@@ -16,7 +16,7 @@ import HistoryPopup from "../popup/history.popup";
 import OtpPopup from "../popup/otp.popup";
 
 const socket = socketIOClient(
-  `https://kltn2020xxx.herokuapp.com`
+  `http://localhost:${process.env.PORT}`
 );
 class Menu extends Component {
   constructor(props) {
