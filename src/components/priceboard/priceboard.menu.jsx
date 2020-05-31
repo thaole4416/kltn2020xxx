@@ -18,6 +18,7 @@ import OtpPopup from "../popup/otp.popup";
 const socket = socketIOClient(
   `http://localhost:${process.env.PORT}`
 );
+console.log("O day",process.env.PORT)
 class Menu extends Component {
   constructor(props) {
     super(props);

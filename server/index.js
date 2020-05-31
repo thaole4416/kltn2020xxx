@@ -23,7 +23,6 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api", routes);
-io.set('origins', 'https://kltn2020xxx.herokuapp.com');
 io.on("connection", function (socket) {
   socket.on("initData", () => {
     emitter.emit("initData");
