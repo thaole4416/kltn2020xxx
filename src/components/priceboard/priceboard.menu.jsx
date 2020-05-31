@@ -16,7 +16,7 @@ import HistoryPopup from "../popup/history.popup";
 import OtpPopup from "../popup/otp.popup";
 
 const socket = socketIOClient(
-  `http://localhost:${process.env.REACT_APP_IO_SERVER}`
+  `http://localhost:${process.env.PORT}`
 );
 class Menu extends Component {
   constructor(props) {
