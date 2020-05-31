@@ -8,7 +8,7 @@ require("dotenv").config({ path: "./.env" });
 
 const app = express();
 const server = require("http").Server(app);
-const io = require("socket.io")(server);
+const io = require("socket.io")(server, { origins: '*:*'});
 const port = process.env.PORT;
 app.use(cors());
 app.options("*", cors());
