@@ -3,7 +3,7 @@ export function getCookie(name) {
   var matched = document.cookie.match(pattern);
   if (matched) {
     var cookie = matched[0].split("=");
-    return JSON.parse(cookie[1]);
+    return JSON.parse(decodeURIComponent(cookie[1]));
   }
   return false;
 }

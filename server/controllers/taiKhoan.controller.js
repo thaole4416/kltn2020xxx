@@ -56,7 +56,7 @@ let login = async (req, res) => {
 
 async function register(req, res) {
   const lastestAcc = await TaiKhoan.find().sort({ _id: -1 });
-  console.log(lastestAcc)
+  console.log(lastestAcc);
   let id = RandomHelper.autoId(lastestAcc[0]._id);
   let tenTaiKhoan = req.body.tenTaiKhoan;
   let tenDangNhap = req.body.tenDangNhap;
@@ -85,7 +85,7 @@ async function register(req, res) {
   let checkEmail = await TaiKhoan.find({ email: email });
   if (checkEmail) errs.push("Email dã tồn tại");
 
-  console.log(errs)
+  console.log(errs);
   if (!errs.length) {
     var taiKhoan = new TaiKhoan({
       _id: id,
@@ -171,6 +171,37 @@ function clearAll(req, res) {
     .then((lenh) => res.json(lenh))
     .catch((err) => res.status(400).json("Error: " + err));
 }
+async function test(req, res) {
+  const user = {
+    id: "29A0000001",
+    email: "thanhpd@gmail.com",
+    username: "Phạm Đức Thành",
+  };
+  const token = jwt.sign(user, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_LIFE,
+  });
+
+  const refreshToken = jwt.sign(user, process.env.REFRESH_JWT_SECRET, {
+    expiresIn: process.env.REFRESH_JWT_LIFE,
+  });
+  var x = JSON.stringify({
+    id: "29A0000001",
+    username: "Phạm Đức Thành",
+    token: token,
+    refreshToken: refreshToken,
+  })
+  console.log("x:",x)
+  try {
+    res.cookie(
+      "userInfo",
+      `${x}`,
+      { maxAge: 900000}
+    );
+    res.send("");
+  } catch (error) {
+    console.log(error);
+  }
+}
 module.exports = {
   login: login,
   register: register,
@@ -178,5 +209,6 @@ module.exports = {
   changePassword: changePassword,
   getInfo: getInfo,
   clearAll: clearAll,
+  test: test,
   //   viewProfile: viewProfile,
 };

@@ -46,6 +46,10 @@ route.get(
   authMiddleware.tokenCheck,
   taiKhoanController.getInfo
 );
+route.get(
+  base_uri + "/test",
+  taiKhoanController.test
+);
 
 route.delete(
   base_uri + "/",

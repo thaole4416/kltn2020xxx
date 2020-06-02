@@ -14,7 +14,8 @@ import SkyLight from "react-skylight";
 import { getAll } from "../../services/userService";
 import HistoryPopup from "../popup/history.popup";
 import OtpPopup from "../popup/otp.popup";
-
+import axios from "axios";
+import { BASE_URL } from "../../constants";
 const socket = socketIOClient();
 console.log("O day",process.env.PORT)
 class Menu extends Component {
@@ -70,6 +71,18 @@ class Menu extends Component {
 
   reSendOtp() {
     this.props.genOtp(this.props.user.token);
+  }
+
+  test = async () => {
+    let x =  await axios({
+      method: "GET",
+      url: BASE_URL + "/taiKhoan/test",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      },
+    });
+    alert(x);
   }
 
   componentWillUnmount() {}
@@ -140,7 +153,7 @@ class Menu extends Component {
         </button>
         <button
           className="btn-menu order"
-          onClick={() => this.historyPopup.show()}
+          onClick={() => this.test()}
         >
           Lịch sử GD
           {/* <i className="fas fa-book"></i> */}
